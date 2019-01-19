@@ -1,3 +1,5 @@
-<h5>{{ server.name }}</h5>
-<p>Server Status is {{ server.status }}</p>
+<span>Server Name: </span>
+<h5 class="form-control">{{ server.name }}</h5>
+<span>Server Status: </span>
+<p class="form-control">Server Status is {{ server.status }}</p>
 <button class="btn btn-primary" (click)="onEdit()">Edit Server</button>
