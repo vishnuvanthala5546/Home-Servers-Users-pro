@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {ServerComponent} from './servers/server/server.component';
 import {UserComponent} from './users/user/user.component';
 import {EditServerComponent} from './servers/edit-server/edit-server.component';
@@ -7,23 +7,26 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ServersComponent} from './servers/servers.component';
 import {HomeComponent} from './home/home.component';
 import {AuthGuard} from './auth-guard.service';
+import {CanDeactivateGuard} from './servers/edit-server/can-deactivate-guard.service';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'users', component: ServersComponent, children: [
-      { path: ':id/:name', component: UserComponent }
-    ] },
+  {path: '', component: HomeComponent},
+  {path: 'users', component: ServersComponent, children: [
+      {path: ':id/:name', component: UserComponent}
+    ]
+  },
   {
     path: 'servers',
     // canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
     component: ServersComponent,
     children: [
-      { path: ':id', component: ServerComponent },
-      { path: ':id:edit', component: EditServerComponent }
-    ] },
-  { path: 'not-found', component: PageNotFoundComponent },
-  { path: '**', redirectTo: '/not-found' }
+      {path: ':id', component: ServerComponent},
+      {path: ':id:edit', component: EditServerComponent, canDeactivate: [CanDeactivateGuard]}
+    ]
+  },
+  {path: 'not-found', component: PageNotFoundComponent},
+  {path: '**', redirectTo: '/not-found'}
 ];
 
 
@@ -33,4 +36,5 @@ const appRoutes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
