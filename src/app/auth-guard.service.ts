@@ -8,7 +8,6 @@ import {
 import {Observable} from 'rxjs/observable';
 import {Injectable} from '@angular/core';
 import {AuthService} from './auth.service';
-import {promise} from 'selenium-webdriver';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {

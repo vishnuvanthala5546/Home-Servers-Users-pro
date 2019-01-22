@@ -1,4 +1,3 @@
-import {promise} from 'selenium-webdriver';
 
 export class AuthService {
   loggedIn = false;
